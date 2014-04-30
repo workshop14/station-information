@@ -26,4 +26,16 @@ describe Station do
     expect(bank.save).to be_true
     expect(Station.all.length).to eq(1)
   end
+
+  describe 'special' do
+    subject(:station) { create(:station) }
+    its(:name) { should == 'Wapping' }
+    it 'should be valid' do
+      expect(subject).to be_valid
+    end
+    it 'should be valid' do
+      expect(station).to be_valid
+    end
+    it { should be_valid }
+  end
 end
