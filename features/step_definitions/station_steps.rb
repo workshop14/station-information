@@ -3,9 +3,10 @@ Given(/^there is a station$/) do
 end
 
 When(/^I visit the "(.*?)" page$/) do |arg1|
-  visit '/stations'
+  get '/stations.json', {}, { "Accept" => "application/json" }
 end
 
 Then(/^I should see the station$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(last_response.status).to eq 200
+  expect(last_response.body).to eq(11)
 end
