@@ -18,5 +18,5 @@ group :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'webmock'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
