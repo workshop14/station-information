@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Station do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should create a valid station' do
+    station = Station.new name: 'Wapping'
+    expect(station).to be_valid
+  end
 end
