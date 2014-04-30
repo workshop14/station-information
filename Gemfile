@@ -17,9 +17,6 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
   gem 'database_cleaner'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'poltergeist'
   gem 'webmock'
   gem 'factory_girl'
 end
