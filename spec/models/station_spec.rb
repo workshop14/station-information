@@ -11,4 +11,11 @@ describe Station do
     station = Station.first
     expect(station.name).to eq('Wapping')
   end
+
+  it 'should work with factory girl name overwrite' do
+    FactoryGirl.create(:station, name: 'Kennington')
+    station = Station.first
+    expect(station.name).to eq('Kennington')
+    expect(Station.all.length).to eq(1)
+  end
 end
