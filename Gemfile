@@ -19,4 +19,5 @@ group :test do
   gem 'database_cleaner'
   gem 'webmock'
   gem 'factory_girl_rails'
+  gem 'codeclimate-test-reporter'
 end
