@@ -61,5 +61,9 @@ include FactoryGirl::Syntax::Methods
 FactoryGirl.define do
   factory :station do
     name 'Wapping'
+    address 'Wapping Station, London Underground Ltd., Wapping High St, London, E1 9NQ'
+    postcode 'E1 9NQ'
+    longitude(-0.055846250896647850)
+    latitude 51.504268283481814000
   end
 end
