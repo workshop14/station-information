@@ -4,7 +4,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'codeclimate-test-reporter'
 WebMock.allow_net_connect!
-WebMock.disable_net_connect!(:allow => "*codeclimate.com/*")
+WebMock.disable_net_connect!(:allow => "https://codeclimate.com/test_reports")
 CodeClimate::TestReporter.start
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
