@@ -24,7 +24,6 @@ describe Station do
         station = build(:station, postcode: postcode)
         expect(station).not_to be_valid
       end
-    end
-    
+    end    
   end
 end
