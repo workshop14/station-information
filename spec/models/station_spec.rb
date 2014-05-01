@@ -1,6 +1,20 @@
 require 'spec_helper'
 
+FactoryGirl.define do
+  factory :station do
+    name 'Wapping'
+    address 'Wapping Station, London Underground Ltd., Wapping High St, London, E1 9NQ'
+    postcode 'E1 9NQ'
+    longitude -0.055846250896647850
+    latitude 51.504268283481814000
+  end
+end
+
 describe Station do
+  context 'Required details' do
+    subject(:station) { build(:station) }
+    its(:name) { should eq('Wapping') }
+  end
   it 'should create a valid station' do
     station = Station.new name: 'Wapping'
     expect(station).to be_valid
