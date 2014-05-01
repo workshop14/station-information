@@ -24,6 +24,11 @@ describe Station do
         station = build(:station, postcode: postcode)
         expect(station).not_to be_valid
       end
-    end    
+    end
+    context 'stations with the same name' do
+      let(:station) { create(:station) }
+      subject{ build(:station, name: station.name) }
+      it{ should be_invalid }
+    end
   end
 end
