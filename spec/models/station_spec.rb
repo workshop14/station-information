@@ -1,41 +1,29 @@
 require 'spec_helper'
 
+FactoryGirl.define do
+  factory :station do
+    name 'Wapping'
+    address 'Wapping Station, London Underground Ltd., Wapping High St, London, E1 9NQ'
+    postcode 'E1 9NQ'
+    longitude(-0.055846250896647850)
+    latitude 51.504268283481814000
+  end
+end
+
 describe Station do
-  it 'should create a valid station' do
-    station = Station.new name: 'Wapping'
-    expect(station).to be_valid
-  end
-
-  it 'should work with factory girl' do
-    FactoryGirl.create(:station)
-    station = Station.first
-    expect(station.name).to eq('Wapping')
-  end
-
-  it 'should work with factory girl name overwrite' do
-    FactoryGirl.create(:station, name: 'Kennington')
-    station = Station.first
-    expect(station.name).to eq('Kennington')
-    expect(Station.all.length).to eq(1)
-  end
-
-  it 'should be possible to remove FactoryGirl namespace' do
-    bank = build(:station, name: 'bank')
-    expect(Station.all.length).to eq(0)
-    expect(bank).to be_valid
-    expect(bank.save).to be_true
-    expect(Station.all.length).to eq(1)
-  end
-
-  describe 'special' do
-    subject(:station) { create(:station) }
-    its(:name) { should == 'Wapping' }
-    it 'should be valid' do
-      expect(subject).to be_valid
+  context 'Required details' do
+    [:name, :address, :postcode, :longitude, :latitude].each do |attribute|
+      it "should invalid without a #{attribute}" do
+        station = build(:station, Hash[attribute, nil])
+        expect(station).not_to be_valid
+        expect(station.errors[attribute]).not_to be_empty
+      end
     end
-    it 'should be valid' do
-      expect(station).to be_valid
-    end
-    it { should be_valid }
+    ['EEE', 'ABC 123', 'AB1 EEE'].each do |postcode|
+      it "should evaluate postcode #{postcode} to be invalid" do
+        station = build(:station, postcode: postcode)
+        expect(station).not_to be_valid
+      end
+    end    
   end
 end
