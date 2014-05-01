@@ -19,6 +19,12 @@ describe Station do
         expect(station.errors[attribute]).not_to be_empty
       end
     end
+    ['EEE', 'ABC 123', 'AB1 EEE'].each do |postcode|
+      it "should evaluate postcode #{postcode} to be invalid" do
+        station = build(:station, postcode: postcode)
+        expect(station).not_to be_valid
+      end
+    end
+    
   end
-
 end
