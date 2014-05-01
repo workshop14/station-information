@@ -12,10 +12,12 @@ end
 
 describe Station do
   context 'Required details' do
-    it 'should be invalid without a name' do
-      station = build(:station, name: nil)
-      expect(station).not_to be_valid
-      expect(station.errors[:name]).not_to be_empty
+    [:name, :address, :postcode, :longitude, :latitude].each do |attribute|
+      it "should invalid without a #{attribute}" do
+        station = build(:station, Hash[attribute, nil])
+        expect(station).not_to be_valid
+        expect(station.errors[attribute]).not_to be_empty
+      end
     end
   end
 
